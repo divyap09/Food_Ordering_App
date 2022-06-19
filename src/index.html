@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        
+        <script src="https://unpkg.com/react@18/umd/react.development.js" crossorigin></script>
+        <script src="https://unpkg.com/react-dom@18/umd/react-dom.development.js" crossorigin></script>
+        <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+        <title>Food Order App</title>
+    </head>
+    <body>
+        <div id="root"></div>
+        <div id="listheader"></div>
+        <div id="listitems"></div>
+        
+        <script type="text/babel">
+
+            let list_header= React.createElement("h3",null,"Our cafe servers");
+            let soup="Soup";
+            let cake="Cup cakes & Pastries";
+            let iceCream= "Ice creams";
+            let shakes = "Milkshakes & Thickshakes";
+            const dishes= [soup,
+                            cake,
+                            iceCream,
+                            shakes
+            ];
+
+            const dishObjects = dishes.map((dish,i) => ({
+                id: i,
+                title: dish
+            }));
+
+            function Header(){
+                return (<header align="center"><h1>Welcome to our Cafe...</h1>
+                    <img height= {300}
+                    src="./cafeheader.jpg"
+                    alt="A cafe header image"/>
+                    </header>)
+            }
+
+            function ListHeader(){
+                return (<section>Our cafe serves</section>)
+            }
+
+
+            function MenuItems(props){
+               
+                return (<ul>
+                    {props.dishes.map((dish) => (
+                        <li key={dish.id}>{dish.title}</li>
+                        ))
+                    }
+                    </ul>)
+            }
+
+            function App(){
+                return (
+                    <React.Fragment>
+                        <Header />
+                        <ListHeader />
+                        <MenuItems dishes = {dishObjects} />
+                    </React.Fragment>
+                )
+            }
+            
+			ReactDOM.render(
+                <App />,
+				document.getElementById("root")
+			);
+
+		</script>
+    </body>
+</html>
